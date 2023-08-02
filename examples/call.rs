@@ -33,7 +33,7 @@ async fn main() -> eyre::Result<()> {
 
     // Load the rpc url using the `MAINNET_EXECUTION_RPC` environment variable
     let eth_rpc_url = std::env::var("MAINNET_EXECUTION_RPC")?;
-    let consensus_rpc = "https://www.lightclientdata.org";
+    let consensus_rpc = "http://testing.prater.beacon-api.nimbus.team";
     log::info!("Consensus RPC URL: {}", consensus_rpc);
 
     // Construct the client
@@ -56,26 +56,26 @@ async fn main() -> eyre::Result<()> {
     let method = "renderBroker(uint256)";
     let method2 = "renderBroker(uint256, uint256)";
     //let argument = U256::from(5);
-    let argument = "0xa9d1e08c7793af67e9d92fe308d5697fb81d3e43".parse::<Address>()?;
+    let argument = "0x9E32Cca3C8cF7434d99629448360b8AC3Db50118".parse::<Address>()?;
     let block = BlockTag::Latest;
     let provider = Provider::<Http>::try_from(eth_rpc_url.clone())?;
     let render = ERC20Token::new(address, Arc::new(provider.clone()));
     log::debug!("Context: call @ {account}::{method} <{argument}>");
     //
     // Call using abigen
-    let result = render.balance_of(argument).call().await?;
-    log::info!(
-        "[ABIGEN] {account}::{method} -> Response: {:?}",
-        result
-    );
+    //let result = render.balance_of(argument).call().await?;
+   // log::info!(
+    //    "[ABIGEN] {account}::{method} -> Response: {:?}",
+     //   result
+    //);
 
 
     let mut client: Client<FileDB> = ClientBuilder::new()
-        .network(Network::MAINNET)
+        .network(Network::GOERLI)
         .data_dir(data_dir)
         .consensus_rpc(consensus_rpc)
         .execution_rpc(&eth_rpc_url)
-        .checkpoint("0x6e17a45f438911407ae14af6ac77c4e94d9645c0c2d45f63a654df34d306e1f3")
+        .checkpoint("0x7e8d04a93be4eb2fdc7492c544ded2eb1cb36185179d1ab4ea598e1ad7d7793c")
         //.load_external_fallback()
         .build()?;
     log::info!(
@@ -83,6 +83,10 @@ async fn main() -> eyre::Result<()> {
         Network::MAINNET
     );    client.start().await?;
 
+    let b = client.get_balance(&argument, BlockTag::Latest).await.unwrap();
+    println!("B {}", b);
+
+    /*
 
     // Call on helios client
     let encoded_call = render.balance_of(argument).calldata().unwrap();
@@ -146,6 +150,6 @@ async fn main() -> eyre::Result<()> {
                 log::info!( "balance of deposit contract: {} = {:#x}", i, balance);
     }
 
-
+*/
     Ok(())
 }
