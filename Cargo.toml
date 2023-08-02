@@ -33,6 +33,7 @@ serde = { version = "1.0.154", features = ["derive"] }
 [dev-dependencies]
 tokio = { version = "1", features = ["full"] }
 dotenv = "0.15.0"
+ethers = "2.0.2"
 
 [target.'cfg(not(target_arch = "wasm32"))'.dev-dependencies]
 tokio = { version = "1", features = ["full"] }
