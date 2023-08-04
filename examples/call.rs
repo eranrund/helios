@@ -85,6 +85,12 @@ async fn main() -> eyre::Result<()> {
 
     let b = client.get_balance(&argument, BlockTag::Latest).await.unwrap();
     println!("B {}", b);
+    
+
+    let head_block_num = client.get_block_number().await?;
+        println!("BLOCK {}", head_block_num);
+     let logs = client.get_logs(&Filter::new().select(9458518).event("UpdatedMessages(string,string)")).await.unwrap();
+    println!("{:#?}", logs);
 
     /*
 
