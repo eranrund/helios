@@ -26,11 +26,12 @@ default-members = ["cli"]
 
 [workspace.dependencies]
 # consensus
-ssz-rs = { package = "ssz_rs", version = "0.9.0" }
+ssz-rs = { package = "ssz_rs", version = "0.9.0", default-features = false, features = ["serde"] }
 milagro_bls = { git = "https://github.com/Snowfork/milagro_bls" }
 
 # execution
 ethers = "2.0.2"
+ethers-core = { path = "../ethers-rs/ethers-core", default-features = false }
 revm = { version = "2.3", default-features = false, features = ["std", "k256", "with-serde"] }
 triehash-ethereum = { git = "https://github.com/openethereum/parity-ethereum", rev = "55c90d4016505317034e3e98f699af07f5404b63" }
 
@@ -41,17 +42,18 @@ tokio = { version = "1", features = ["full"] }
 
 # io
 reqwest = { version = "0.11.13", features = ["json"] }
-serde = { version = "1.0.143", features = ["derive"] }
+serde = { version = "1.0.143", default-features = false, features = ["alloc", "derive"] }
 serde_json = "1.0.85"
 
 # misc
 eyre = "0.6.8"
-hex = "0.4.3"
+hex = { version = "0.4.3", default-features = false, features = ["alloc"] }
 bytes = "1.2.1"
 toml = "0.5.9"
 log = "0.4.17"
 chrono = "0.4.23"
 thiserror = "1.0.37"
+thiserror-no-std = "2.0"
 superstruct = "0.7.0"
 openssl = { version = "0.10", features = ["vendored"] }
 hyper = "0.14.23"

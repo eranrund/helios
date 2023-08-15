@@ -1,5 +1,6 @@
-use std::fmt::Display;
-
+use alloc::string::String;
+use alloc::string::ToString;
+use core::fmt::Display;
 use serde::{de::Error, Deserialize};
 
 #[derive(Debug, Clone, Copy)]
@@ -10,7 +11,7 @@ pub enum BlockTag {
 }
 
 impl Display for BlockTag {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         let formatted = match self {
             Self::Latest => "latest".to_string(),
             Self::Finalized => "finalized".to_string(),

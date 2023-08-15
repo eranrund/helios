@@ -3,6 +3,10 @@ name = "consensus"
 version = "0.4.1"
 edition = "2021"
 
+[features]
+default = ["std"]
+std = ["ssz-rs/std", "common/std"]
+
 [dependencies]
 # consensus
 ssz-rs.workspace = true

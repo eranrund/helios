@@ -1,7 +1,9 @@
-use ethers::prelude::Address;
-use eyre::Result;
+use alloc::{format, string::String, vec::Vec};
+use ethers_core::types::Address;
 
-pub fn hex_str_to_bytes(s: &str) -> Result<Vec<u8>> {
+pub use hex::FromHexError;
+
+pub fn hex_str_to_bytes(s: &str) -> Result<Vec<u8>, FromHexError> {
     let stripped = s.strip_prefix("0x").unwrap_or(s);
     Ok(hex::decode(stripped)?)
 }

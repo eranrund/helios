@@ -1,7 +1,7 @@
-use ethers::types::H256;
-use thiserror::Error;
-
 use crate::types::BlockTag;
+use alloc::string::{String, ToString};
+use ethers_core::types::H256;
+use thiserror_no_std::Error;
 
 #[derive(Debug, Error)]
 #[error("block not available: {block}")]

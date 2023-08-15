@@ -41,7 +41,7 @@ impl ExecutionRpc for MockRpc {
 
     async fn get_code(&self, _address: &Address, _block: u64) -> Result<Vec<u8>> {
         let code = read_to_string(self.path.join("code.json"))?;
-        hex_str_to_bytes(&code[0..code.len() - 1])
+        hex_str_to_bytes(&code[0..code.len() - 1]).map_err(eyre::Error::msg)
     }
 
     async fn send_raw_transaction(&self, _bytes: &[u8]) -> Result<H256> {
