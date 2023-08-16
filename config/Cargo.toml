@@ -4,21 +4,27 @@ name = "config"
 version = "0.4.1"
 edition = "2021"
 
+[features]
+default = ["std"]
+std = ["anyhow/std", "hex/std", "ethers-core/std", "thiserror-no-std/std", "reqwest", "figment", "common/std", "eyre", "tokio"]
+
+
 [dependencies]
-eyre.workspace = true
+anyhow = { version = "1", default-features = false }
+eyre = { workspace = true, optional = true }
 serde.workspace = true
 hex.workspace = true
-ethers.workspace = true
-thiserror.workspace = true
+ethers-core.workspace = true
+thiserror-no-std.workspace = true
 log.workspace = true
-reqwest.workspace = true
+reqwest = { workspace = true, optional = true }
 futures.workspace = true
 
-figment = { version = "0.10.7", features = ["toml", "env"] }
+figment = { version = "0.10.7", features = ["toml", "env"], optional = true }
 serde_yaml = "0.9.14"
-strum = { version = "0.24.1", features = ["derive"] }
+strum = { version = "0.24.1", default-features = false, features = ["derive"] }
 
 common = { path = "../common" }
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
-tokio.workspace = true
+tokio = { workspace = true, optional = true }

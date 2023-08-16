@@ -672,8 +672,9 @@ dependencies = [
 name = "config"
 version = "0.4.1"
 dependencies = [
+ "anyhow",
  "common",
- "ethers",
+ "ethers-core 2.0.8",
  "eyre",
  "figment",
  "futures",
@@ -683,7 +684,7 @@ dependencies = [
  "serde",
  "serde_yaml",
  "strum 0.24.1",
- "thiserror",
+ "thiserror-no-std",
  "tokio",
 ]
 
