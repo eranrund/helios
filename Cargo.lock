@@ -660,7 +660,7 @@ checksum = "3d7b894f5411737b7867f4827955924d7c254fc9f4d91a6aad6b097804b1018b"
 name = "common"
 version = "0.4.1"
 dependencies = [
- "anyhow",
+ "displaydoc",
  "ethers-core 2.0.8",
  "hex",
  "serde",
@@ -703,7 +703,6 @@ dependencies = [
  "hex",
  "log",
  "milagro_bls",
- "openssl",
  "reqwest",
  "serde",
  "serde_json",
@@ -1107,6 +1106,17 @@ dependencies = [
  "libc",
  "redox_users",
  "winapi",
+]
+
+[[package]]
+name = "displaydoc"
+version = "0.2.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "487585f4d0c6655fe74905e2504d8ad6908e4db67f744eb140876906c2f3175d"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.28",
 ]
 
 [[package]]

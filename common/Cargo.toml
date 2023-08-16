@@ -4,11 +4,11 @@ version = "0.4.1"
 edition = "2021"
 
 [features]
-#default = ["std"]
-std = ["anyhow/std", "hex/std", "ssz-rs/std", "ethers-core/std", "thiserror-no-std/std"]
+default = ["std"]
+std = ["hex/std", "ssz-rs/std", "ethers-core/std", "thiserror-no-std/std"]
 
 [dependencies]
-anyhow = { version = "1", default-features = false }
+displaydoc = { version = "0.2", default-features = false }
 #eyre.workspace = true
 serde.workspace = true
 hex.workspace = true

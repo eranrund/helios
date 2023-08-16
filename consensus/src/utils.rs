@@ -1,7 +1,6 @@
 use eyre::Result;
 use milagro_bls::{AggregateSignature, PublicKey};
 use ssz_rs::prelude::*;
-
 use crate::types::{Bytes32, Header, SignatureBytes};
 
 pub fn calc_sync_period(slot: u64) -> u64 {
@@ -87,7 +86,7 @@ pub fn branch_to_nodes(branch: Vec<Bytes32>) -> Result<Vec<Node>> {
     branch
         .iter()
         .map(bytes32_to_node)
-        .collect::<Result<Vec<Node>>>()
+        .collect()
 }
 
 pub fn bytes32_to_node(bytes: &Bytes32) -> Result<Node> {
